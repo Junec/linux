@@ -1,0 +1,6 @@
+check process memcache with pidfile /var/run/memcached.pid
+start program = "/etc/init.d/memcached restart"
+stop program = "/usr/bin/killall memcached"
+if failed host 127.0.0.1 port 11211 then restart
+if 2 restarts within 6 cycles then timeout
+group webserver
